@@ -36,7 +36,7 @@ public class FlockManager : MonoBehaviour
         {
             Vector3 pos = GetRandomPositionWithinMoveLimits();
             int randomIndex = (int)Random.Range(0, agentsPrefabs.Length);
-            allAgents[i] = (GameObject)Instantiate(agentsPrefabs[randomIndex], pos, Quaternion.identity);
+            allAgents[i] = (GameObject)Instantiate(agentsPrefabs[randomIndex], pos, Quaternion.identity, transform);
             allAgents[i].GetComponent<Flock>().flockManager = this;
         }
     }
