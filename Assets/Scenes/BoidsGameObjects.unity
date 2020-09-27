@@ -667,9 +667,9 @@ MonoBehaviour:
   agentsPrefabs:
   - {fileID: 1733855665772604, guid: b0489fdb6d64a4a4ba8e194e561d60cd, type: 3}
   - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
+  goal: {fileID: 0}
   numAgents: 300
   moveLimits: {x: 15, y: 3, z: 15}
-  goal: {fileID: 0}
   simpleBehaviour: 0
   debug: 0
   minSpeed: 0.94
