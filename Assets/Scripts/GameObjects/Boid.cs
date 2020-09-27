@@ -33,7 +33,6 @@ public class Boid : MonoBehaviour
         {
             turning = true;
             direction = Vector3.Reflect(transform.forward, hit.normal);
-            if (boidsManager.debug) Debug.DrawRay(transform.position, transform.forward * boidsManager.avoidCollidersDistance, Color.red);
         }
         else turning = false;
 

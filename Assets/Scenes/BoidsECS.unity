@@ -668,7 +668,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 800488368}
-  - component: {fileID: 800488367}
+  - component: {fileID: 800488370}
   - component: {fileID: 800488369}
   m_Layer: 0
   m_Name: BoidsManager
@@ -677,32 +677,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &800488367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 800488366}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2a659a057997414aac781739f47d17d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentsPrefabs:
-  - {fileID: 1733855665772604, guid: b0489fdb6d64a4a4ba8e194e561d60cd, type: 3}
-  - {fileID: 1318662798089844, guid: 06a4036ceebb544e494c30d599b9d2c1, type: 3}
-  goal: {fileID: 0}
-  numAgents: 300
-  moveLimits: {x: 15, y: 3, z: 15}
-  simpleBehaviour: 0
-  debug: 0
-  minSpeed: 0.94
-  maxSpeed: 3.01
-  neighbourDistance: 4.7
-  avoidDistance: 1.04
-  rotationSpeed: 3
-  avoidCollidersDistance: 2.5
 --- !u!4 &800488368
 Transform:
   m_ObjectHideFlags: 0
@@ -732,8 +706,35 @@ MonoBehaviour:
   agentsPrefabs:
   - {fileID: 1460532640015281754, guid: 2041e32fe140b0644a0ddcd08451f515, type: 3}
   - {fileID: 6823968824734614007, guid: f8dc04f46be8ace4cac9217c6269a90b, type: 3}
+  goal: {fileID: 0}
   numAgents: 300
-  moveLimits: {x: 5, y: 5, z: 5}
+  moveLimits: {x: 15, y: 3, z: 15}
+  simpleBehaviour: 0
+  debug: 1
+  minSpeed: 0.94
+  maxSpeed: 3.01
+  neighbourDistance: 4.7
+  avoidDistance: 1.04
+  rotationSpeed: 3
+  avoidCollidersDistance: 2.5
+--- !u!114 &800488370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800488366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7d7b2fd0ad143340bbde2c8d03a41ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  neighbourDistance: 0
+  avoidDistance: 0
+  goalPos:
+    x: 0
+    y: 0
+    z: 0
 --- !u!1001 &1028746937
 PrefabInstance:
   m_ObjectHideFlags: 0

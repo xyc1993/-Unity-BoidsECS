@@ -10,7 +10,6 @@ public class BoidsManager : MonoBehaviour
     public int numAgents = 20;
     public Vector3 moveLimits = new Vector3(5.0f, 5.0f, 5.0f); //bounds of the flock movement
     public bool simpleBehaviour = false;
-    public bool debug = true;
 
     [Header("Agent Settings")]
     [Range(0.0f, 5.0f)] public float minSpeed;
