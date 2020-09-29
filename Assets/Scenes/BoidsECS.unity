@@ -568,7 +568,7 @@ MonoBehaviour:
   - {fileID: 1460532640015281754, guid: 2041e32fe140b0644a0ddcd08451f515, type: 3}
   - {fileID: 6823968824734614007, guid: f8dc04f46be8ace4cac9217c6269a90b, type: 3}
   goal: {fileID: 0}
-  numAgents: 200
+  numAgents: 300
   moveLimits: {x: 15, y: 3, z: 15}
   simpleBehaviour: 0
   minSpeed: 0.94

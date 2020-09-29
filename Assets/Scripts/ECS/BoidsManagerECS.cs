@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Mathematics;
 using Unity.Entities;
 using Unity.Transforms;
+using Unity.Physics.Systems;
 
 public class BoidsManagerECS : MonoBehaviour
 {
@@ -47,6 +48,7 @@ public class BoidsManagerECS : MonoBehaviour
     {
         store = new BlobAssetStore();
         BoidsDataManager.Instance.manager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        BoidsDataManager.Instance.buildPhysicsWorld = World.DefaultGameObjectInjectionWorld.GetOrCreateSystem<BuildPhysicsWorld>();
         var settings = GameObjectConversionSettings.FromWorld(World.DefaultGameObjectInjectionWorld, store);
 
         entityPrefabs = new Entity[agentsPrefabs.Length];

@@ -7,7 +7,7 @@ using Unity.Entities;
 using Unity.Transforms;
 using Unity.Jobs;
 using Unity.Collections;
-using UnityEngine.UIElements;
+using Unity.Physics;
 
 public class BoidSystem : JobComponentSystem
 {
@@ -27,13 +27,15 @@ public class BoidSystem : JobComponentSystem
         float3 goalPos = BoidsDataManager.Instance.goalPos;
         Bounds bounds = BoidsDataManager.Instance.bounds;
         uint baseSeed = (uint)UnityEngine.Random.Range(500, 6000);
+        PhysicsWorld world = BoidsDataManager.Instance.buildPhysicsWorld.PhysicsWorld;
 
         var jobHandle = Entities
             .WithName("BoidSystem")
             .ForEach((ref Translation position, ref Rotation rotation, ref BoidData boid) =>
             {
                 if (simpleBehaviour) SimpleUpdate(ref position, ref rotation, ref boid, boidsData, agentNeighbourDistance, agentAvoidDistance, goalPos, deltaTime);
-                else FullUpdate(ref position, ref rotation, ref boid, boidsData, agentNeighbourDistance, agentAvoidDistance, goalPos, deltaTime, minSpeed, maxSpeed, bounds, baseSeed, avoidCollidersDistance);
+                else FullUpdate(ref position, ref rotation, ref boid, boidsData, agentNeighbourDistance, agentAvoidDistance, goalPos, deltaTime, 
+                                minSpeed, maxSpeed, bounds, baseSeed, avoidCollidersDistance, world);
             })
             .Schedule(inputDeps);
 
@@ -45,21 +47,29 @@ public class BoidSystem : JobComponentSystem
 
     private static void FullUpdate(ref Translation position, ref Rotation rotation, ref BoidData boid, NativeArray<BoidData> boidsData, 
                                     float agentNeighbourDistance, float agentAvoidDistance, float3 goalPos, float deltaTime,
-                                    float minSpeed, float maxSpeed, Bounds bounds, uint baseSeed, float avoidCollidersDistance)
+                                    float minSpeed, float maxSpeed, Bounds bounds, uint baseSeed, float avoidCollidersDistance, PhysicsWorld world)
     {
         float3 direction = float3.zero;
+        float3 forward = math.forward(rotation.Value);
         bool turning;
+
+        RaycastInput rayInput = new RaycastInput
+        {
+            Start = boid.CurrentPosition,
+            End = boid.CurrentPosition + avoidCollidersDistance * forward,
+            Filter = CollisionFilter.Default
+        };
 
         if (!bounds.Contains(boid.CurrentPosition)) //handle getting out of bounds
         {
             turning = true;
             direction = (float3)bounds.center - boid.CurrentPosition;
         }
-        //else if (Physics.Raycast(transform.position, transform.forward * boidsManager.avoidCollidersDistance, out RaycastHit hit)) //handle collision avoidance
-        //{
-        //    turning = true;
-        //    direction = Vector3.Reflect(transform.forward, hit.normal);
-        //}
+        else if (world.CastRay(rayInput, out Unity.Physics.RaycastHit hit))
+        {
+            turning = true;
+            direction = (float3)Vector3.Reflect(forward, hit.SurfaceNormal);
+        }
         else turning = false;
 
         if (turning) //adjust path if needed

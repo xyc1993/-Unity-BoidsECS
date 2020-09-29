@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Physics.Systems;
 
 public class BoidsDataManager : MonoBehaviour
 {
     public static BoidsDataManager Instance;
 
     [HideInInspector] public EntityManager manager;
+    [HideInInspector] public BuildPhysicsWorld buildPhysicsWorld;
     [HideInInspector] public float minSpeed;
     [HideInInspector] public float maxSpeed;
     [HideInInspector] public float neighbourDistance;
