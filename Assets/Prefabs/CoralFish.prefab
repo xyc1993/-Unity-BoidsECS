@@ -28,7 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
-  - {fileID: 2002183956225713574}
+  - {fileID: 143632931488085216}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,83 +45,83 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boidsManager: {fileID: 0}
---- !u!1001 &6823968824728506044
+--- !u!1001 &4937350012636798970
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 6823968824734614006}
     m_Modifications:
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: -0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: a8902d96be6325342846b26bb06b408b,
-        type: 3}
-      propertyPath: m_Name
-      value: 13009_Coral_Beauty_Angelfish_v1_l3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8461146299002504149, guid: a8902d96be6325342846b26bb06b408b,
+    - target: {fileID: -1504981713932161579, guid: 6033fe23b6bb5c04a9edaef260625b46,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: f30a8d5c5336da243bae044b63beb3d8, type: 2}
+      objectReference: {fileID: 2100000, guid: 88be702f523b3664ebd85edaf4793e59, type: 2}
+    - target: {fileID: -927199367670048503, guid: 6033fe23b6bb5c04a9edaef260625b46,
+        type: 3}
+      propertyPath: m_Name
+      value: CoralFish
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a8902d96be6325342846b26bb06b408b, type: 3}
---- !u!4 &2002183956225713574 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: 6033fe23b6bb5c04a9edaef260625b46, type: 3}
+--- !u!4 &143632931488085216 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: a8902d96be6325342846b26bb06b408b,
+  m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: 6033fe23b6bb5c04a9edaef260625b46,
     type: 3}
-  m_PrefabInstance: {fileID: 6823968824728506044}
+  m_PrefabInstance: {fileID: 4937350012636798970}
   m_PrefabAsset: {fileID: 0}
