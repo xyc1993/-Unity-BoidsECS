@@ -7,7 +7,6 @@ public class Boid : MonoBehaviour
     [HideInInspector] public BoidsManager boidsManager;
 
     private float speed;
-    private bool turning = false;
 
     private void Start ()
     {
@@ -23,6 +22,7 @@ public class Boid : MonoBehaviour
     public void FullUpdate()
     {
         Vector3 direction = Vector3.zero;
+        bool turning;
 
         if (!boidsManager.bounds.Contains(transform.position)) //handle getting out of bounds
         {

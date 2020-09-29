@@ -34,8 +34,13 @@ public class BoidsManagerECS : MonoBehaviour
 
     private void SetBoidDataManagerAgentData()
     {
+        BoidsDataManager.Instance.minSpeed = minSpeed;
+        BoidsDataManager.Instance.maxSpeed = maxSpeed;
         BoidsDataManager.Instance.neighbourDistance = neighbourDistance;
         BoidsDataManager.Instance.avoidDistance = avoidDistance;
+        BoidsDataManager.Instance.avoidCollidersDistance = avoidCollidersDistance;
+        BoidsDataManager.Instance.simpleBehaviour = simpleBehaviour;
+        BoidsDataManager.Instance.bounds = new Bounds(transform.position, 2.0f * moveLimits);
     }
 
     private void InitData()
@@ -53,7 +58,7 @@ public class BoidsManagerECS : MonoBehaviour
 
     private void SpawnEntities()
     {
-        for (int i = 0; i < numAgents; i++)
+        for (uint i = 0; i < numAgents; i++)
         {
             int randomIndex = (int)UnityEngine.Random.Range(0, entityPrefabs.Length);
             float speed = UnityEngine.Random.Range(minSpeed, maxSpeed);
@@ -67,7 +72,7 @@ public class BoidsManagerECS : MonoBehaviour
 
     private void Update()
     {
-        SetBoidDataManagerAgentData();
+        SetBoidDataManagerAgentData(); //for supporting inspector values change
         UpdateGoalPosition();
     }
 

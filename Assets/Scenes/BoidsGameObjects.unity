@@ -692,10 +692,9 @@ MonoBehaviour:
   - {fileID: 1460532640015281754, guid: 223e0c2c182e5264c95970df1c739b0b, type: 3}
   - {fileID: 6823968824734614007, guid: 0404d846a7a1a774eb394c549d403976, type: 3}
   goal: {fileID: 0}
-  numAgents: 300
+  numAgents: 1000
   moveLimits: {x: 15, y: 3, z: 15}
   simpleBehaviour: 0
-  debug: 0
   minSpeed: 0.94
   maxSpeed: 3.01
   neighbourDistance: 4.7

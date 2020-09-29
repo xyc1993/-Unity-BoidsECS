@@ -9,9 +9,14 @@ public class BoidsDataManager : MonoBehaviour
     public static BoidsDataManager Instance;
 
     [HideInInspector] public EntityManager manager;
+    [HideInInspector] public float minSpeed;
+    [HideInInspector] public float maxSpeed;
     [HideInInspector] public float neighbourDistance;
     [HideInInspector] public float avoidDistance;
+    [HideInInspector] public float avoidCollidersDistance;
+    [HideInInspector] public bool simpleBehaviour = false;
     [HideInInspector] public float3 goalPos = float3.zero;
+    [HideInInspector] public Bounds bounds;
 
     private void Awake()
     {
