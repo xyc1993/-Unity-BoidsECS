@@ -80,10 +80,10 @@ public class Boid : MonoBehaviour
 
         if (groupSize > 0)
         {
-            centre = centre/groupSize + (boidsManager.goalPos - transform.position);
+            centre /= groupSize;
             speed = groupSpeed / groupSize;
 
-            Vector3 direction = (centre + avoid) - transform.position;
+            Vector3 direction = (centre + boidsManager.goalPos + avoid) - transform.position;
             if (direction != Vector3.zero)
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), boidsManager.rotationSpeed * Time.deltaTime);
         }

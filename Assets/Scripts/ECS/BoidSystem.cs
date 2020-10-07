@@ -11,6 +11,32 @@ using Unity.Physics;
 
 public class BoidSystem : JobComponentSystem
 {
+    public struct BoidSystemData
+    {
+        public float minSpeed { get; private set; }
+        public float maxSpeed { get; private set; }
+        public float agentNeighbourDistance { get; private set; }
+        public float agentAvoidDistance { get; private set; }
+        public float avoidCollidersDistance { get; private set; }
+        public bool simpleBehaviour { get; private set; }
+        public float3 goalPos { get; private set; }
+        public Bounds bounds { get; private set; }
+        public uint baseSeed { get; private set; }
+
+        public void SetData()
+        {
+            minSpeed = BoidsDataManager.Instance.minSpeed;
+            maxSpeed = BoidsDataManager.Instance.maxSpeed;
+            agentNeighbourDistance = BoidsDataManager.Instance.neighbourDistance;
+            agentAvoidDistance = BoidsDataManager.Instance.avoidDistance;
+            avoidCollidersDistance = BoidsDataManager.Instance.avoidCollidersDistance;
+            simpleBehaviour = BoidsDataManager.Instance.simpleBehaviour;
+            goalPos = BoidsDataManager.Instance.goalPos;
+            bounds = BoidsDataManager.Instance.bounds;
+            baseSeed = (uint)UnityEngine.Random.Range(500, 6000);
+        }
+    }
+
     protected override JobHandle OnUpdate(JobHandle inputDeps)
     {
         float deltaTime = Time.DeltaTime;
@@ -18,24 +44,24 @@ public class BoidSystem : JobComponentSystem
         EntityQuery entityQuery = BoidsDataManager.Instance.manager.CreateEntityQuery(ComponentType.ReadOnly<BoidData>());
         NativeArray<BoidData> boidsData = entityQuery.ToComponentDataArray<BoidData>(Allocator.TempJob);
 
-        float minSpeed = BoidsDataManager.Instance.minSpeed;
-        float maxSpeed = BoidsDataManager.Instance.maxSpeed;
-        float agentNeighbourDistance = BoidsDataManager.Instance.neighbourDistance;
-        float agentAvoidDistance = BoidsDataManager.Instance.avoidDistance;
-        float avoidCollidersDistance = BoidsDataManager.Instance.avoidCollidersDistance;
-        bool simpleBehaviour = BoidsDataManager.Instance.simpleBehaviour;
-        float3 goalPos = BoidsDataManager.Instance.goalPos;
-        Bounds bounds = BoidsDataManager.Instance.bounds;
-        uint baseSeed = (uint)UnityEngine.Random.Range(500, 6000);
+        BoidSystemData boidSystemData = new BoidSystemData();
+        boidSystemData.SetData();
         PhysicsWorld world = BoidsDataManager.Instance.buildPhysicsWorld.PhysicsWorld;
 
         var jobHandle = Entities
             .WithName("BoidSystem")
             .ForEach((ref Translation position, ref Rotation rotation, ref BoidData boid) =>
             {
-                if (simpleBehaviour) SimpleUpdate(ref position, ref rotation, ref boid, boidsData, agentNeighbourDistance, agentAvoidDistance, goalPos, deltaTime);
-                else FullUpdate(ref position, ref rotation, ref boid, boidsData, agentNeighbourDistance, agentAvoidDistance, goalPos, deltaTime, 
-                                minSpeed, maxSpeed, bounds, baseSeed, avoidCollidersDistance, world);
+                if (boidSystemData.simpleBehaviour)
+                {
+                    SimpleUpdate(ref position, ref rotation, ref boid, boidsData, boidSystemData.agentNeighbourDistance, 
+                                 boidSystemData.agentAvoidDistance, boidSystemData.goalPos, deltaTime);
+                }
+                else
+                {
+                    FullUpdate(ref position, ref rotation, ref boid, boidsData, boidSystemData.agentNeighbourDistance, boidSystemData.agentAvoidDistance, boidSystemData.goalPos, deltaTime,
+                                boidSystemData.minSpeed, boidSystemData.maxSpeed, boidSystemData.bounds, boidSystemData.baseSeed, boidSystemData.avoidCollidersDistance, world);
+                }
             })
             .Schedule(inputDeps);
 
@@ -129,10 +155,10 @@ public class BoidSystem : JobComponentSystem
 
         if (groupSize > 0)
         {
-            centre = centre / groupSize + (goalPos - boid.CurrentPosition);
+            centre /= groupSize;
             boid.Speed = groupSpeed / groupSize;
 
-            float3 direction = (centre + avoid) - boid.CurrentPosition;
+            float3 direction = (centre + goalPos + avoid) - boid.CurrentPosition;
             if (math.length(direction - float3.zero) > 0.05f)
             {
                 rotation.Value = math.slerp(rotation.Value, quaternion.LookRotation(direction, new float3(0, 1, 0)), boid.RotationSpeed * deltaTime);
